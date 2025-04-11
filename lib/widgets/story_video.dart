@@ -111,7 +111,9 @@ class StoryVideoState extends State<StoryVideo> {
               if (playbackState == PlaybackState.pause) {
                 playerController!.pause();
               } else {
-                playerController!.play();
+                if (mounted) {
+                  playerController!.play();
+                }
               }
             },
           );
@@ -135,25 +137,23 @@ class StoryVideoState extends State<StoryVideo> {
 
     return widget.videoLoader.state == LoadState.loading
         ? Center(
-          child:
-              widget.loadingWidget ??
-              Container(
-                width: 70,
-                height: 70,
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                  strokeWidth: 3,
+            child: widget.loadingWidget ??
+                Container(
+                  width: 70,
+                  height: 70,
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    strokeWidth: 3,
+                  ),
                 ),
-              ),
-        )
+          )
         : Center(
-          child:
-              widget.errorWidget ??
-              Text(
-                "Media failed to load.",
-                style: TextStyle(color: Colors.white),
-              ),
-        );
+            child: widget.errorWidget ??
+                Text(
+                  "Media failed to load.",
+                  style: TextStyle(color: Colors.white),
+                ),
+          );
   }
 
   @override
