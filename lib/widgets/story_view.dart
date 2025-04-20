@@ -86,9 +86,7 @@ class StoryItem {
         child: Center(
           child: Text(
             title,
-            style: textStyle?.copyWith(
-                  color: contrast > 1.8 ? Colors.white : Colors.black,
-                ) ??
+            style: textStyle ??
                 TextStyle(
                   color: contrast > 1.8 ? Colors.white : Colors.black,
                   fontSize: 18,
