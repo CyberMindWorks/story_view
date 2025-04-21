@@ -125,7 +125,6 @@ class StoryVideoState extends State<StoryVideo> {
   }
 
   Widget getContentView() {
-    print("abc" + widget.videoLoader.state.toString());
     if (widget.videoLoader.state == LoadState.success) {
       if (!playerController!.value.isInitialized) {
         return Center(
