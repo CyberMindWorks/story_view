@@ -125,8 +125,21 @@ class StoryVideoState extends State<StoryVideo> {
   }
 
   Widget getContentView() {
-    if (widget.videoLoader.state == LoadState.success &&
-        playerController!.value.isInitialized) {
+    print("abc" + widget.videoLoader.state.toString());
+    if (widget.videoLoader.state == LoadState.success) {
+      if (!playerController!.value.isInitialized) {
+        return Center(
+          child: widget.loadingWidget ??
+              Container(
+                width: 70,
+                height: 70,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  strokeWidth: 3,
+                ),
+              ),
+        );
+      }
       return Center(
         child: AspectRatio(
           aspectRatio: playerController!.value.aspectRatio,
